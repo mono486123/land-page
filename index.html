@@ -3,150 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>土地租賃詳細資訊 | 台東成功鎮</title>
+    <title>卑南鄉三塊厝土地租賃 | 長期合作方案</title>
     <style>
-        /* 【全域變數】定義顏色與風格 */
         :root {
-            --主色: #2c3e50;
-            --次色: #34495e;
-            --強調色: #27ae60;
-            --警示色: #e74c3c;
-            --背景色: #f8f9fa;
-            --文字色: #333;
+            --主色: #1a4d2e;      /* 森林綠 */
+            --次色: #475569;      /* 灰藍色 */
+            --強調色: #058d59;    /* 綠色系強調 */
+            --警示色: #be123c;    /* 深紅色 */
+            --背景色: #f8fafc;
+            --文字色: #1e293b;
         }
 
         body {
-            font-family: "Microsoft JhengHei", sans-serif;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
             background-color: var(--背景色);
             color: var(--文字色);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* 【標題區】 */
         header {
-            background: white;
-            padding: 30px;
+            background: linear-gradient(135deg, #1a4d2e 0%, #344e41 100%);
+            color: white;
+            padding: 50px 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
             text-align: center;
         }
-        header h1 { margin: 0; color: var(--主色); font-size: 1.8rem; }
+        
+        header h1 { margin: 0; font-size: 2.2rem; }
+        
         .price-badge {
             display: inline-block;
             background: var(--強調色);
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-top: 10px;
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin-top: 18px;
             font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(5, 141, 89, 0.3);
         }
 
-        /* 【核心佈局】電腦版兩欄，手機版一欄 */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        @media (min-width: 1024px) {
-            .main-layout { grid-template-columns: 1.5fr 1fr; }
-        }
+        .main-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 1024px) { .main-layout { grid-template-columns: 1.5fr 1fr; } }
 
-        /* 【CSS 互動式頁籤 (Tabs)】核心邏輯 */
-        .tab-wrapper {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        /* 隱藏真正的 radio 按鈕 */
+        .tab-wrapper { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .tab-wrapper input[type="radio"] { display: none; }
-
-        /* 頁籤按鈕樣式 */
-        .tab-menu {
-            display: flex;
-            background: #eee;
-            border-bottom: 1px solid #ddd;
-        }
-        .tab-menu label {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            color: #666;
-        }
-        .tab-menu label:hover { background: #e0e0e0; }
-
-        /* 選中狀態的樣式 (當 input 被 checked 時，對應的 label 變色) */
+        .tab-menu { display: flex; background: #f1f5f9; border-bottom: 1px solid #e2e8f0; }
+        .tab-menu label { flex: 1; padding: 18px; text-align: center; cursor: pointer; font-weight: bold; transition: 0.3s; color: #64748b; }
+        
         #tab1:checked ~ .tab-menu label[for="tab1"],
         #tab2:checked ~ .tab-menu label[for="tab2"],
-        #tab3:checked ~ .tab-menu label[for="tab3"] {
-            background: white;
-            color: var(--強調色);
-            border-top: 3px solid var(--強調色);
-        }
+        #tab3:checked ~ .tab-menu label[for="tab3"] { background: white; color: var(--主色); border-top: 4px solid var(--主色); }
 
-        /* 內容區塊隱藏/顯示邏輯 */
-        .tab-content { display: none; padding: 25px; min-height: 400px; }
-        #tab1:checked ~ #content1,
-        #tab2:checked ~ #content2,
-        #tab3:checked ~ #content3 { display: block; }
+        .tab-content { display: none; padding: 30px; min-height: 400px; }
+        #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3 { display: block; }
 
-        /* 【資料顯示樣式】 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .info-item { margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
-        .info-item label { font-size: 0.85rem; color: #888; display: block; }
-        .info-item span { font-size: 1.05rem; font-weight: bold; color: var(--次色); }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
+        .info-item { margin-bottom: 15px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+        .info-item label { font-size: 0.85rem; color: #64748b; display: block; margin-bottom: 4px; }
+        .info-item span { font-size: 1.1rem; font-weight: bold; color: var(--主色); }
 
-        /* 【警告/規則樣式】 */
+        /* 照片展示區樣式 */
+        .photo-section { margin-top: 25px; }
+        .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .photo-item { position: relative; border-radius: 10px; overflow: hidden; background: #e2e8f0; height: 180px; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); color: white; padding: 5px 10px; font-size: 0.8rem; }
+
         .rules-list { list-style: none; padding: 0; }
-        .rules-list li {
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            background: #fdf2f2;
-            border-left: 4px solid var(--警示色);
-        }
-        .rules-list li.allow { background: #f2fdf5; border-left-color: var(--強調色); }
+        .rules-list li { padding: 12px 18px; margin-bottom: 12px; border-radius: 8px; background: #fff1f2; border-left: 5px solid var(--警示色); color: #881337; }
+        .rules-list li.allow { background: #f0fdf4; border-left-color: var(--強調色); color: #166534; }
 
-        /* 【側邊欄地圖】 */
         .sticky-sidebar { position: sticky; top: 20px; }
-        .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .map-box { height: 300px; background: #eee; border-radius: 8px; overflow: hidden; margin-bottom: 15px; }
+        .card { background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
+        .map-box { height: 280px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
 
-        /* 【聯絡按鈕】 */
-        .btn {
-            display: block; width: 100%; padding: 15px; text-align: center;
-            border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 10px;
-            box-sizing: border-box;
-        }
+        .btn { display: block; width: 100%; padding: 16px; text-align: center; border-radius: 10px; text-decoration: none; font-weight: bold; margin-bottom: 12px; box-sizing: border-box; }
         .btn-line { background: #06c755; color: white; }
         .btn-phone { border: 2px solid var(--主色); color: var(--主色); }
-
-        /* 讓地圖下方的連結強制換行，並增加一點間距 */
-        .map-link-stacked {
-            display: block;    /* 變成區塊元素，就會自動換行 */
-            margin-top: 10px;  /* 增加跟上方元素的間距 */
-            text-decoration: none;
-        }
+        .map-link-stacked { display: block; margin-top: 10px; text-decoration: none; font-weight: 500; color: #0369a1; }
+        
+        .status-tag { display: inline-block; background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>台東成功鎮・三仙台旁優質農地</h1>
-        <div class="price-badge">租金：NT$ 5,000 / 月 (等值年租 6 萬)</div>
+        <h1>台東卑南鄉・三塊厝段農地</h1>
+        <div class="price-badge">長期租賃方案：首 2-3 年免租金 (整理期補貼)</div>
     </header>
 
     <div class="main-layout">
@@ -157,77 +108,99 @@
                 <input type="radio" name="tabs" id="tab3">
 
                 <div class="tab-menu">
-                    <label for="tab1">📍 產權與基本資料</label>
-                    <label for="tab2">📜 租賃與規則</label>
-                    <label for="tab3">💡 現況與 FAQ</label>
+                    <label for="tab1">📍 土地基本資料</label>
+                    <label for="tab2">📜 租賃與付款規則</label>
+                    <label for="tab3">💡 現況與照片展示</label>
                 </div>
 
                 <div class="tab-content" id="content1">
                     <div class="info-grid">
-                        <div class="info-item"><label>縣市鄉鎮</label><span>台東縣成功鎮</span></div>
-                        <div class="info-item"><label>總面積</label><span>150 坪 (約 0.5 分)</span></div>
-                        <div class="info-item"><label>使用分區</label><span>一般農業區</span></div>
+                        <div class="info-item"><label>行政區</label><span>台東縣卑南鄉</span></div>
+                        <div class="info-item"><label>地段</label><span>三塊厝段</span></div>
+                        <div class="info-item"><label>面積</label><span>2052.05 平方公尺 (約 620 坪)</span></div>
+                        <div class="info-item"><label>使用分區</label><span>山坡地保育區</span></div>
                         <div class="info-item"><label>使用地類別</label><span>農牧用地</span></div>
-                        <div class="info-item"><label>道路寬度</label><span>臨 4 米道路 (小貨車可達)</span></div>
-                        <div class="info-item"><label>座標位置</label><span>23.1234, 121.5678</span></div>
+                        <div class="info-item"><label>道路寬度</label><span>臨東 38 鄉道 (約 5 公尺)</span></div>
                     </div>
-                    <hr>
-                    <h3>重點說明</h3>
-                    <p>本土地產權清楚，無設定抵押。界址以現場水泥樁為準。適合長期農作、資材存放或假日休閒使用。</p>
+                    <hr style="border:0; border-top:1px solid #eee; margin:25px 0;">
+                    <h3 style="color:var(--主色);">產權與位置說明</h3>
+                    <p>土地權利範圍完整，地勢為山坡保育地。適合長期果樹種植、溫室搭建或個人休閒農場開發。因鄰近既有道路，大貨車可順利進出。</p>
                 </div>
 
                 <div class="tab-content" id="content2">
+                    <h3 style="color:var(--主色);">長期租賃特許方案</h3>
                     <div class="info-grid">
-                        <div class="info-item"><label>最短租期</label><span>一年 (可續租)</span></div>
-                        <div class="info-item"><label>押金</label><span>兩個月 (NT$ 10,000)</span></div>
-                        <div class="info-item"><label>付款方式</label><span>每半年支付一次</span></div>
-                        <div class="info-item"><label>可起租日</label><span>隨時，現狀交屋</span></div>
+                        <div class="info-item"><label>第一階段 (整理期)</label><span>免租金 (期程面議)</span></div>
+                        <div class="info-item"><label>第二階段 (正式期)</label><span>租金面議 (以年為單位)</span></div>
+                        <div class="info-item"><label>付款方式</label><span>現金支付，每年一月支付</span></div>
+                        <div class="info-item"><label>押金</label><span>環境維護保證金 (面議)</span></div>
                     </div>
                     
-                    <h3>🚫 禁止事項 (嚴格執行)</h3>
+                    <h3 style="color:var(--警示色); margin-top:30px;">🚫 禁止事項</h3>
                     <ul class="rules-list">
-                        <li>嚴禁傾倒、填埋廢棄物或不明土方 (違者報警並解約)。</li>
-                        <li><strong>禁止轉租</strong>、出借或變相讓與第三人使用。</li>
-                        <li>不得從事非法活動或高污染儲放。</li>
+                        <li><strong>絕對禁止：</strong>傾倒任何廢棄物、工業土方或有毒物質。</li>
+                        <li><strong>用途限制：</strong>禁止將土地轉租、設定抵押或違法利用。</li>
                     </ul>
 
-                    <h3>✅ 施工與維護</h3>
+                    <h3 style="color:var(--主色);">✅ 施工與維護</h3>
                     <ul class="rules-list">
-                        <li class="allow">蓋資材室、圍籬、整地：<strong>需經地主書面同意</strong>。</li>
-                        <li class="allow">期滿原則：需清除私人物件，<strong>恢復原狀</strong>。</li>
+                        <li class="allow">承租人需自行負擔除草、清理竹林及整地費用。</li>
+                        <li class="allow">興建資材室或圍籬需經地主書面同意並合法申請。</li>
                     </ul>
                 </div>
 
                 <div class="tab-content" id="content3">
-                    <h3>水電現況</h3>
-                    <p>● <strong>電力：</strong>附近 50 米有電桿，地主可配合簽同意書，由承租人負擔申請規費。<br>
-                       ● <strong>水源：</strong>現狀有山泉水管線，需自行維修與拉接。</p>
+                    <div class="status-tag">舊釋迦園現況</div>
+                    <h3 style="color:var(--主色);">環境與設備說明</h3>
+                    <p>● <strong>植被：</strong>早期種植釋迦，現處休耕狀態，雜草與竹林較茂密。<br>
+                       ● <strong>能源：</strong>附近即有電線桿與住宅區，水電申請牽管相對容易。<br>
+                       ● <strong>交通：</strong>臨 5 米寬鄉道，農產運輸與工程車進出方便。</p>
                     
-                    <h3>環境現況</h3>
-                    <p>目前地勢平坦，已完成除草。排水良好，去年強風大雨無淹水紀錄。</p>
-                    
-                    <hr>
-                    <h3>常見問題 FAQ</h3>
-                    <p><strong>Q: 可以放貨櫃屋嗎？</strong><br>A: 在不固著於地面、且不違反法規前提下，經地主同意後可放置。</p>
-                    <p><strong>Q: 租約可以公證嗎？</strong><br>A: 歡迎公證，公證費用由雙方平分或承租人負擔。</p>
+                    <div class="photo-section">
+                        <h3 style="color:var(--主色);">現場實況照片 (點擊放大)</h3>
+                        <div class="photo-grid">
+                            <div class="photo-item">
+                                <img src="https://via.placeholder.com/400x300?text=入口與道路現況" alt="入口照片">
+                                <div class="photo-label">入口與臨路寬度</div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="https://via.placeholder.com/400x300?text=地內雜草現況" alt="內部照片">
+                                <div class="photo-label">內部雜草與竹林</div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="https://via.placeholder.com/400x300?text=地勢緩坡圖" alt="地勢照片">
+                                <div class="photo-label">地形與地勢參考</div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="https://via.placeholder.com/400x300?text=周邊環境照" alt="周邊照片">
+                                <div class="photo-label">周邊建物與電桿</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border:0; border-top:1px solid #eee; margin:25px 0;">
+                    <h3 style="color:var(--主色);">常見問題解答 (FAQ)</h3>
+                    <p><strong>Q: 為什麼提供免租金整理期？</strong><br>A: 地主理解清除茂密竹林與雜草需要成本，以此減免鼓勵優質承租人長期開發。</p>
+                    <p><strong>Q: 土地界址是否清楚？</strong><br>A: 簽約前可配合申請複丈，確保雙方範圍認知一致。</p>
                 </div>
             </div>
         </main>
 
         <aside class="sticky-sidebar">
             <div class="card">
-                <h3>地點導航</h3>
+                <h3 style="margin-top:0;">地點導航</h3>
                 <div class="map-box">
                     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1xM_PD6riEkE4Yovet2p5hnCpw-eCZrA&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                    <a href="https://maps.app.goo.gl/Vjg37SFXQ2wX9Jrw7" target="_blank" class="map-link-stacked" style="color:var(--強調色); font-size: 0.9rem;">📍 開啟 Google Maps 導航</a>
-                    <a href="https://www.google.com/maps/d/u/0/embed?mid=1xM_PD6riEkE4Yovet2p5hnCpw-eCZrA&ehbc=2E312F" target="_blank" class="map-link-stacked" style="color:var(--強調色); font-size: 0.9rem;">📍 全視窗對照圖</a>            </div>
+                <a href="https://maps.app.goo.gl/Vjg37SFXQ2wX9Jrw7" target="_blank" class="map-link-stacked" style="color:var(--強調色); font-size: 0.9rem;">📍 開啟 Google Maps 導航</a>
+                <a href="https://www.google.com/maps/d/u/0/embed?mid=1xM_PD6riEkE4Yovet2p5hnCpw-eCZrA&ehbc=2E312F" target="_blank" class="map-link-stacked" style="color:var(--強調色); font-size: 0.9rem;">📍 全視窗地圖參考</a>
+            </div>
 
             <div class="card">
-                <h3>聯絡地主</h3>
-                <p style="font-size: 0.85rem; color:#666;">詢問時請主動告知：預計用途、承租人數、預計租期。</p>
+                <h3 style="margin-top:0;">聯絡地主</h3>
+                <p style="font-size: 0.85rem; color:#666;">詢問請告知：預計用途、承租人數、預計租期。</p>
                 <a href="https://line.me/ti/p/你的ID" class="btn btn-line">💬 LINE 線上詢問</a>
-                <a href="tel:0912345678" class="btn btn-phone">📞 撥打電話</a>
+                <a href="tel:0912345678" class="btn btn-phone">📞 撥打電話洽談</a>
             </div>
         </aside>
     </div>
